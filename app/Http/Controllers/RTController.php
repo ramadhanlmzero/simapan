@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Surat;
+use App\Models\RT;
 use Alert;
 
-class SuratController extends Controller
+class RTController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,12 @@ class SuratController extends Controller
      */
     public function index()
     {
-        $surat = Surat::all();
+        $rt = RT::all();
         $data = [
-            'surat' => $surat,
+            'rt' => $rt,
         ];
 
-    	return view('surat.index', $data);
+    	return view('rt.index', $data);
     }
 
     /**
@@ -30,7 +30,7 @@ class SuratController extends Controller
      */
     public function create()
     {
-        return view('surat.create');
+        return view('rt.create');
     }
 
     /**
@@ -41,11 +41,18 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        Surat::create($data);
+        $data = [
+            'no_rt' => $request->no_rt,
+            'nama_rt' => $request->nama_rt,
+            'no_rw' => $request->no_rw,
+            'kelurahan' => $request->kelurahan,
+            'kecamatan' => $request->kecamatan,
+            'kota' => $request->kota
+        ];
+        RT::create($data);
 
         Alert::success('Data berhasil disimpan!', 'Sukses');
-        return redirect()->route('surat.index');
+        return redirect()->route('rt.index');
     }
 
     /**
@@ -56,12 +63,12 @@ class SuratController extends Controller
      */
     public function show($id)
     {
-        $surat = surat::find($id);
+        $rt = RT::find($id);
         $data = [
-            'surat' => $surat,
+            'rt' => $rt,
         ];
 
-        return view('surat.show', $data);
+        return view('rt.show', $data);
     }
 
     /**
@@ -72,12 +79,12 @@ class SuratController extends Controller
      */
     public function edit($id)
     {
-        $surat = Surat::find($id);
+        $rt = RT::find($id);
         $data = [
-            'surat' => $surat,
+            'rt' => $rt,
         ];
 
-        return view('surat.edit', $data);
+        return view('rt.edit', $data);
     }
 
     /**
@@ -89,12 +96,12 @@ class SuratController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $surat = Surat::find($id);
+        $rt = RT::find($id);
         $data = $request->except('_token');
-        $surat->update($data);
+        $rt->update($data);
 
         Alert::success('Data berhasil diubah!', 'Sukses');
-        return redirect()->route('surat.index');
+        return redirect()->route('rt.index');
     }
 
     /**
@@ -105,10 +112,10 @@ class SuratController extends Controller
      */
     public function destroy($id)
     {
-        $surat = Surat::find($id);
-        $surat->delete();
+        $rt = RT::find($id);
+        $rt->delete();
 
         Alert::success('Data berhasil dihapus!', 'Sukses');
-        return redirect()->route('surat.index');
+        return redirect()->route('rt.index');
     }
 }

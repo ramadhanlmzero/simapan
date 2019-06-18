@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="{{ asset('package/dist/sweetalert2.min.css') }}">
 @endsection
 
-@section('title', 'Surat')
+@section('title', 'Perangkat RT')
 
 @section('content')
 <div class="tambah">
-    <a href="{{ url('/surat/create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data Baru</a>
+    <a href="{{ url('/rt/create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data Baru</a>
 </div>
 
 <div class="row">
@@ -18,16 +18,32 @@
                 <div class="card-body">
                     <table class="table">
                         <div class="nama">
-                            <h3><center>{{$surat->jenis_surat}}</center></h3>
+                            <h3><center>{{$rt->nama_rt}}</center></h3>
                         </div>
                         <tbody>
                             <tr>
-                                <th scope="row" width="400px">ID Surat</th>
-                                <td>: {{$surat->id_surat}} </td>
+                                <th scope="row" width="400px">Nomor RT</th>
+                                <td>: {{$rt->no_rt}} </td>
                             </tr>
                             <tr>
-                                <th scope="row">Jenis Surat</th>
-                                <td>: {{$surat->jenis_surat}} </td>
+                                <th scope="row">Nama Ketua RT</th>
+                                <td>: {{$rt->nama_rt}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nomor RW</th>
+                                <td>: {{$rt->no_rw}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kelurahan</th>
+                                <td>: {{$rt->kelurahan}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kecamatan</th>
+                                <td>: {{$rt->kecamatan}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kabupaten/Kota</th>
+                                <td>: {{$rt->kota}} </td>
                             </tr>
                         </tbody>
                     </table>

@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 
 Route::resource('surat', 'SuratController');
+Route::resource('rt', 'RTController');
 // Route::get('/surat','SuratController@detail')->name('surat.detail');

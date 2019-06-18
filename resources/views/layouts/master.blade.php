@@ -18,11 +18,11 @@
 
 <body>
     <aside id="left-panel" class="left-panel">
-        @include('layouts.include.navbar')
+        @include('layouts.include.sidebar')
     </aside>
 
     <div id="right-panel" class="right-panel">
-        @include('layouts.include.sidebar')
+        @include('layouts.include.header')
         <div class="content mt-3">
             <div class="animated fadeIn">
                 @yield('content')

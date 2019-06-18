@@ -1,13 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Surat extends Model
 {
-    protected $table = 'Surat';
+    protected $table = 'surat';
     protected $primaryKey = 'id_surat';
-    protected $fillable = ['jenis_surat'];
+    protected $fillable = [
+        'jenis_surat'
+    ];
     public $timestamps = false;
 }

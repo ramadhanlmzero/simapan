@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="{{ asset('package/dist/sweetalert2.min.css') }}">
 @endsection
 
-@section('title', 'Surat')
+@section('title', 'Perangkat RT')
 
 @section('content')
 <div class="tambah">
-    <a href="{{ url('/surat/create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data Baru</a>
+    <a href="{{ url('/rt/create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-square"></i>&nbsp; Tambah Data Baru</a>
 </div>
 
 <div class="row">
@@ -22,20 +22,20 @@
                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th width="200px">ID Surat</th>
-                            <th>Jenis Surat</th>
+                            <th width="200px">Nomor RT</th>
+                            <th>Nama Ketua RT</th>
                             <th width="200px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($surat as $value)
+                        @foreach($rt as $value)
                         <tr>
-                            <td>{{ $value->id_surat }}</td>
-                            <td>{{ $value->jenis_surat }}</td>
+                            <td>{{ $value->no_rt }}</td>
+                            <td>{{ $value->nama_rt }}</td>
                             <td>
-                                <a href="{{ route('surat.show', $value->id_surat) }}" class="btn btn-primary btn-sm">Rincian</a>
-                                <a href="{{ route('surat.edit', $value->id_surat) }}" class="btn btn-success btn-sm">Ubah</a>
-                                <form action="{{ route('surat.destroy', $value->id_surat) }}" method="POST" id="{{$value->id_surat}}" style="display:inline-block">
+                                <a href="{{ route('rt.show', $value->no_rt) }}" class="btn btn-primary btn-sm">Rincian</a>
+                                <a href="{{ route('rt.edit', $value->no_rt) }}" class="btn btn-success btn-sm">Ubah</a>
+                                <form action="{{ route('rt.destroy', $value->no_rt) }}" method="POST" id="{{$value->no_rt}}" style="display:inline-block">
                                     @method('DELETE')
                                     {{ csrf_field() }}
                                     <button type="submit" onClick="return confirm('Ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus</button>
