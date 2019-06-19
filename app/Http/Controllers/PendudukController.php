@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Penduduk;
 use App\Models\RT;
 use Alert;
 
-class RTController extends Controller
+class PendudukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,12 @@ class RTController extends Controller
      */
     public function index()
     {
-        $rt = RT::all();
+        $penduduk = Penduduk::all();
         $data = [
-            'rt' => $rt,
+            'penduduk' => $penduduk,
         ];
 
-    	return view('rt.index', $data);
+    	return view('penduduk.index', $data);
     }
 
     /**
@@ -30,7 +31,11 @@ class RTController extends Controller
      */
     public function create()
     {
-        return view('rt.create');
+        $rt = RT::all();
+        $data = [
+            'rt' => $rt,
+        ];
+        return view('penduduk.create', $data);
     }
 
     /**
@@ -42,17 +47,25 @@ class RTController extends Controller
     public function store(Request $request)
     {
         $data = [
+            'nik' => $request->nik,
+            'no_kk' => $request->no_kk,
+            'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
             'no_rt' => $request->no_rt,
-            'nama_rt' => $request->nama_rt,
-            'no_rw' => $request->no_rw,
-            'kelurahan' => $request->kelurahan,
-            'kecamatan' => $request->kecamatan,
-            'kota' => $request->kota
+            'agama' => $request->agama,
+            'tgl_lahir' => $request->tgl_lahir,
+            'tempat_lahir' => $request->tempat_lahir,
+            'status_keluarga' => $request->status_keluarga,
+            'status_kawin' => $request->status_kawin,
+            'pendidikan' => $request->pendidikan,
+            'pekerjaan' => $request->pekerjaan,
+            'kewarganegaraan' => $request->kewarganegaraan
         ];
-        RT::create($data);
+        Penduduk::create($data);
 
         Alert::success('Data berhasil disimpan!', 'Sukses');
-        return redirect()->route('rt.index');
+        return redirect()->route('penduduk.index');
     }
 
     /**
@@ -63,12 +76,12 @@ class RTController extends Controller
      */
     public function show($id)
     {
-        $rt = RT::find($id);
+        $penduduk = Penduduk::find($id);
         $data = [
-            'rt' => $rt,
+            'penduduk' => $penduduk,
         ];
 
-        return view('rt.show', $data);
+        return view('penduduk.show', $data);
     }
 
     /**
@@ -79,12 +92,12 @@ class RTController extends Controller
      */
     public function edit($id)
     {
-        $rt = RT::find($id);
+        $penduduk = Penduduk::find($id);
         $data = [
-            'rt' => $rt,
+            'penduduk' => $penduduk,
         ];
 
-        return view('rt.edit', $data);
+        return view('penduduk.edit', $data);
     }
 
     /**
@@ -96,12 +109,12 @@ class RTController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rt = RT::find($id);
+        $penduduk = Penduduk::find($id);
         $data = $request->except('_token');
-        $rt->update($data);
+        $penduduk->update($data);
 
         Alert::success('Data berhasil diubah!', 'Sukses');
-        return redirect()->route('rt.index');
+        return redirect()->route('penduduk.index');
     }
 
     /**
@@ -112,21 +125,10 @@ class RTController extends Controller
      */
     public function destroy($id)
     {
-        $rt = RT::find($id);
-        $rt->delete();
+        $penduduk = Penduduk::find($id);
+        $penduduk->delete();
 
         Alert::success('Data berhasil dihapus!', 'Sukses');
-        return redirect()->route('rt.index');
-    }
-
-    public function cariRt($rt)
-    {
-        $rt = RT::find($rt);
-
-        if ($rt) {
-            return $rt->nama_rt;
-        }
-
-        return 'tidak ditemukan';
+        return redirect()->route('penduduk.index');
     }
 }

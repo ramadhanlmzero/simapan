@@ -16,7 +16,7 @@
             <li class="menu-item-has-children dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Lihat Data</a>
                 <ul class="sub-menu children dropdown-menu">
-                    <li><i class="fa fa-id-card-o"></i><a href="#">Data Penduduk</a></li>
+                    <li><i class="fa fa-id-card-o"></i><a href="{{ route('penduduk.index') }}">Data Penduduk</a></li>
                     <li><i class="fa fa-id-card-o"></i><a href="#">Data Pendatang</a></li>
                     <li><i class="fa fa-id-card-o"></i><a href="#">Data Pindahan</a></li>
                     <li><i class="fa fa-id-card-o"></i><a href="#">Data Kelahiran</a></li>
@@ -28,7 +28,7 @@
             <li class="menu-item-has-children dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Input Data</a>
                 <ul class="sub-menu children dropdown-menu">
-                    <li><i class="fa fa-table"></i><a href="#">Data Penduduk</a></li>
+                    <li><i class="fa fa-table"></i><a href="{{ route('penduduk.create') }}">Data Penduduk</a></li>
                     <li><i class="fa fa-table"></i><a href="#">Data Pendatang</a></li>
                     <li><i class="fa fa-table"></i><a href="#">Data Pindahan</a></li>
                     <li><i class="fa fa-table"></i><a href="#">Data Kelahiran</a></li>

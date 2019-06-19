@@ -17,4 +17,6 @@ Route::get('/', function () {
 
 Route::resource('surat', 'SuratController');
 Route::resource('rt', 'RTController');
+Route::get('carirt/{rt}', 'RTController@cariRt')->name('rt.cari');
+Route::resource('penduduk', 'PendudukController');
 // Route::get('/surat','SuratController@detail')->name('surat.detail');

@@ -9,7 +9,7 @@ class Penduduk extends Model
     protected $table = 'penduduk';
     protected $primaryKey = 'nik';
     protected $fillable = [
-        'nik', 'no_kk', 'no_rt', 'nama', 'jenis_kelamin', 'alamat', 'agama', 'tgl_lahir', 'tempat_lahir', 'status_keluarga', 'status_kawin', 'pendidikan', 'pekerjaan', 'kewarganegaraan'
+        'nik', 'no_kk', 'nama', 'jenis_kelamin', 'alamat', 'no_rt','agama', 'tgl_lahir', 'tempat_lahir', 'status_keluarga', 'status_kawin', 'pendidikan', 'pekerjaan', 'kewarganegaraan'
     ];
     public $timestamps = false;
 

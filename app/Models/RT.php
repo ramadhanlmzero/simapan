@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class RT extends Model
 {
     protected $table = 'rt';
-    protected $primaryKey = 'no_rt';
+    protected $primaryKey = 'id_rt';
     protected $fillable = [
-        'no_rt', 'nama_rt', 'no_rw', 'kelurahan', 'kecamatan', 'kota'
+        'no_rt', 'nama_rt', 'id_rw'
     ];
     public $timestamps = false;
 

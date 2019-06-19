@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRtTable extends Migration
+class CreateRwTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateRtTable extends Migration
      */
     public function up()
     {
-        Schema::create('rt', function (Blueprint $table) {
-            $table->char('no_rt', 2)->primary();
-            $table->string('nama_rt');
+        Schema::create('rw', function (Blueprint $table) {
+            $table->increments('id_rw');
             $table->char('no_rw', 2);
-            $table->string('kelurahan');
-            $table->string('kecamatan');
-            $table->string('kota'); 
+            $table->string('nama_rw');
+            $table->unsignedInteger('id_kelurahan');
+            $table->foreign('id_kelurahan')->references('id_kelurahan')->on('kelurahan')->onDelete('cascade');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateRtTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rt');
+        Schema::dropIfExists('rw');
     }
 }
