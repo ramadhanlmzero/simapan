@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RT;
+use App\Models\RW;
 use Alert;
 
 class RTController extends Controller
@@ -16,10 +17,11 @@ class RTController extends Controller
     public function index()
     {
         $rt = RT::all();
-        $data = [
-            'rt' => $rt,
-        ];
 
+        $data = [
+            'rt' => $rt
+        ];
+        
     	return view('rt.index', $data);
     }
 
@@ -30,7 +32,11 @@ class RTController extends Controller
      */
     public function create()
     {
-        return view('rt.create');
+        $rw = RW::all();
+        $data = [
+            'rw' => $rw,
+        ];
+        return view('rt.create', $data);
     }
 
     /**
@@ -41,14 +47,7 @@ class RTController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'no_rt' => $request->no_rt,
-            'nama_rt' => $request->nama_rt,
-            'no_rw' => $request->no_rw,
-            'kelurahan' => $request->kelurahan,
-            'kecamatan' => $request->kecamatan,
-            'kota' => $request->kota
-        ];
+        $data = $request->except('_token');
         RT::create($data);
 
         Alert::success('Data berhasil disimpan!', 'Sukses');
@@ -117,16 +116,5 @@ class RTController extends Controller
 
         Alert::success('Data berhasil dihapus!', 'Sukses');
         return redirect()->route('rt.index');
-    }
-
-    public function cariRt($rt)
-    {
-        $rt = RT::find($rt);
-
-        if ($rt) {
-            return $rt->nama_rt;
-        }
-
-        return 'tidak ditemukan';
     }
 }

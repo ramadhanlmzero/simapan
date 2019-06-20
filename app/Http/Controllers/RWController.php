@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Penduduk;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
 use App\Models\Village;
+use App\Models\RW;
 use Alert;
 
-class PendudukController extends Controller
+class RWController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +19,13 @@ class PendudukController extends Controller
      */
     public function index()
     {
-        $penduduk = Penduduk::all();
-        $data = [
-            'penduduk' => $penduduk,
-        ];
+        $rw = RW::all();
 
-    	return view('penduduk.index', $data);
+        $data = [
+            'rw' => $rw
+        ];
+        
+    	return view('rw.index', $data);
     }
 
     /**
@@ -38,7 +39,7 @@ class PendudukController extends Controller
         $data = [
             'provinsi' => $provinsi,
         ];
-        return view('penduduk.create', $data);
+        return view('rw.create', $data);
     }
 
     public function cariKota($id)
@@ -86,25 +87,14 @@ class PendudukController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'nik' => $request->nik,
-            'no_kk' => $request->no_kk,
-            'nama' => $request->nama,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'no_rt' => $request->no_rt,
-            'agama' => $request->agama,
-            'tgl_lahir' => $request->tgl_lahir,
-            'tempat_lahir' => $request->tempat_lahir,
-            'status_keluarga' => $request->status_keluarga,
-            'status_kawin' => $request->status_kawin,
-            'pendidikan' => $request->pendidikan,
-            'pekerjaan' => $request->pekerjaan,
-            'kewarganegaraan' => $request->kewarganegaraan
+            'no_rw' => $request->no_rw,
+            'nama_rw' => $request->nama_rw,
+            'id_kelurahan' => $request->kelurahan
         ];
-        Penduduk::create($data);
+        RW::create($data);
 
         Alert::success('Data berhasil disimpan!', 'Sukses');
-        return redirect()->route('penduduk.index');
+        return redirect()->route('rw.index');
     }
 
     /**
@@ -115,12 +105,20 @@ class PendudukController extends Controller
      */
     public function show($id)
     {
-        $penduduk = Penduduk::find($id);
+        $rw = RW::find($id);
+        $kelurahan = Village::where('id', $rw->id_kelurahan)->first();
+        // $kecamatan = $kelurahan->district()->where('id',$id)->get();
+        // $kota = $kecamatan->regency()->where('id',$id)->get();
+        // $provinsi = $kota->province()->where('id',$id)->get();
         $data = [
-            'penduduk' => $penduduk,
+            'rw' => $rw,
+            'kelurahan' => $kelurahan,
+            // 'kecamatan' => $kecamatan,
+            // 'kota' => $kota,
+            // 'provinsi' => $provinsi,
         ];
 
-        return view('penduduk.show', $data);
+        return view('rw.show', $data);
     }
 
     /**
@@ -131,12 +129,12 @@ class PendudukController extends Controller
      */
     public function edit($id)
     {
-        $penduduk = Penduduk::find($id);
+        $rw = RW::find($id);
         $data = [
-            'penduduk' => $penduduk,
+            'rw' => $rw,
         ];
 
-        return view('penduduk.edit', $data);
+        return view('rw.edit', $data);
     }
 
     /**
@@ -148,12 +146,12 @@ class PendudukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $penduduk = Penduduk::find($id);
+        $rw = RW::find($id);
         $data = $request->except('_token');
-        $penduduk->update($data);
+        $rw->update($data);
 
         Alert::success('Data berhasil diubah!', 'Sukses');
-        return redirect()->route('penduduk.index');
+        return redirect()->route('rw.index');
     }
 
     /**
@@ -164,10 +162,10 @@ class PendudukController extends Controller
      */
     public function destroy($id)
     {
-        $penduduk = Penduduk::find($id);
-        $penduduk->delete();
+        $rw = RW::find($id);
+        $rw->delete();
 
         Alert::success('Data berhasil dihapus!', 'Sukses');
-        return redirect()->route('penduduk.index');
+        return redirect()->route('rw.index');
     }
 }

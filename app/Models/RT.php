@@ -13,6 +13,21 @@ class RT extends Model
     ];
     public $timestamps = false;
 
+    /**
+     * RT belongs to RW.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function rw()
+    {
+        return $this->belongsTo(RW::class);
+    }
+
+    /**
+     * RT has many Penduduk.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function penduduk()
     {
         return $this->hasMany(Penduduk::class);

@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong>Form Input Surat</strong>
+                <strong>Form Input @yield('title')</strong>
             </div>
             <div class="card-body card-block">
                 <form action="{{ route('surat.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal"> 

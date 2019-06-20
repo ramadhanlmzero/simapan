@@ -16,7 +16,14 @@ Route::get('/', function () {
 });
 
 Route::resource('surat', 'SuratController');
+
 Route::resource('rt', 'RTController');
-Route::get('carirt/{rt}', 'RTController@cariRt')->name('rt.cari');
+
+Route::resource('rw', 'RWController');
+
 Route::resource('penduduk', 'PendudukController');
-// Route::get('/surat','SuratController@detail')->name('surat.detail');
+Route::get('carikota/{id}', 'PendudukController@cariKota')->name('penduduk.carikota');
+Route::get('carikecamatan/{id}', 'PendudukController@cariKecamatan')->name('penduduk.carikecamatan');
+Route::get('carikelurahan/{id}', 'PendudukController@cariKelurahan')->name('penduduk.carikelurahan');
+Route::get('carirw/{id}', 'PendudukController@cariRW')->name('penduduk.carirw');
+Route::get('carirt/{id}', 'PendudukController@cariRT')->name('penduduk.carirt');

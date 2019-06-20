@@ -22,6 +22,7 @@
                     <li><i class="fa fa-id-card-o"></i><a href="#">Data Kelahiran</a></li>
                     <li><i class="fa fa-id-card-o"></i><a href="#">Data Kematian</a></li>
                     <li><i class="fa fa-id-card-o"></i><a href="{{ route('rt.index') }}">Data Perangkat RT</a></li>
+                    <li><i class="fa fa-id-card-o"></i><a href="{{ route('rw.index') }}">Data Perangkat RW</a></li>
                     <li><i class="fa fa-id-card-o"></i><a href="{{ route('surat.index') }}">Data Surat</a></li>
                 </ul>
             </li>
@@ -33,7 +34,8 @@
                     <li><i class="fa fa-table"></i><a href="#">Data Pindahan</a></li>
                     <li><i class="fa fa-table"></i><a href="#">Data Kelahiran</a></li>
                     <li><i class="fa fa-table"></i><a href="#">Data Kematian</a></li>
-                    <li><i class="fa fa-table"></i><a href="{{ route('rt.create') }}">Data Perangkat RT/RW</a></li>
+                    <li><i class="fa fa-table"></i><a href="{{ route('rt.create') }}">Data Perangkat RT</a></li>
+                    <li><i class="fa fa-table"></i><a href="{{ route('rw.create') }}">Data Perangkat RW</a></li>
                     <li><i class="fa fa-table"></i><a href="{{ route('surat.create') }}">Data Surat</a></li>
                 </ul>
             </li>

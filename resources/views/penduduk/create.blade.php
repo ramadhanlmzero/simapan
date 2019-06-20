@@ -12,49 +12,49 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong>Form Input Penduduk</strong>
+                <strong>Form Input @yield('title')</strong>
             </div>
             <div class="card-body card-block">
                 <form action="{{ route('penduduk.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal"> 
                     {{ csrf_field() }}
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input1" class="form-control-label">
+                            <label for="nik" class="form-control-label">
                                 NIK/Nomor KTP
                             </label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="number" id="text-input1" name="nik" placeholder="Maksimal 16 karakter" maxlength="16" class="form-control">
+                            <input type="number" id="nik" name="nik" placeholder="Maksimal 16 karakter" maxlength="16" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input2" class="form-control-label">
+                            <label for="no_kk" class="form-control-label">
                                 Nomor KK
                             </label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="number" id="text-input2" name="no_kk" placeholder="Maksimal 16 karakter" maxlength="16" class="form-control">
+                            <input type="number" id="no_kk" name="no_kk" placeholder="Maksimal 16 karakter" maxlength="16" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input3" class="form-control-label">
+                            <label for="nama" class="form-control-label">
                                 Nama
                             </label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="text-input3" name="nama" class="form-control">
+                            <input type="text" id="nama" name="nama" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="select1" class="form-control-label">
+                            <label for="jenis_kelamin" class="form-control-label">
                                 Jenis Kelamin
                             </label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="jenis_kelamin" id="select1" class="form-control">
+                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                 <option value="0" selected disabled>Pilih salah satu</option>
                                 <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>
@@ -63,12 +63,12 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="select2" class="form-control-label">
+                            <label for="agama" class="form-control-label">
                                 Agama
                             </label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="agama" id="select2" class="form-control">
+                            <select name="agama" id="agama" class="form-control">
                                 <option value="0" selected disabled>Pilih salah satu</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen Protestan">Kristen Protestan</option>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">
+                            <label for="datetimepicker" class="form-control-label">
                                 Tanggal Lahir
                             </label>
                         </div>
@@ -101,63 +101,86 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input4" class="form-control-label">
+                            <label for="tempat_lahir" class="form-control-label">
                                 Tempat Kelahiran
                             </label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="text-input4" name="tempat_lahir" class="form-control">
+                            <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="select3" class="form-control-label">Status Keluarga</label>
+                            <label for="provinsi" class="form-control-label">Provinsi</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="status_keluarga" id="select3" class="form-control">
+                            <select name="provinsi" id="provinsi" class="form-control">
                                 <option value="0" selected disabled>Pilih salah satu</option>
-                                <option value="Kepala Keluarga">Kepala Keluarga</option>
-                                <option value="Istri">Istri</option>
-                                <option value="Anak">Anak</option>
-                                <option value="Cucu">Cucu</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="textarea-input" class="form-control-label">Alamat</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <textarea name="alamat" id="textarea-input" rows="3" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="select5" class="form-control-label">Nomor RT</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <select name="no_rt" id="select5" class="form-control">
-                                <option value="0" selected disabled>Pilih salah satu</option>
-                                @foreach ($rt as $value)
-                                    <option value="{{ $value->no_rt }}">{{ $value->no_rt }}</option>
+                                @foreach ($provinsi as $value)
+                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="disabled-input" class="form-control-label">Nama Ketua RT</label>
+                            <label for="kota" class="form-control-label">Kabupaten/Kota</label>
                         </div>
                         <div class="col-12 col-md-9">
-                        <input type="text" readonly id="namaRt" value="" placeholder="Otomatis muncul ketika Nomor RT diinputkan" disabled class="form-control">
+                            <select name="kota" id="kota" class="form-control">
+                            </select>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="select" class="form-control-label">Kewarganegaraan</label>
+                            <label for="kecamatan" class="form-control-label">Kecamatan</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="kewarganegaraan" id="select" class="form-control">
+                            <select name="kecamatan" id="kecamatan" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="kelurahan" class="form-control-label">Kelurahan</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="kelurahan" id="kelurahan" class="form-control">
+                            </select>
+                        </div>
+                    </div>                
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="rw" class="form-control-label">RW</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="rw" id="rw" class="form-control">
+                            </select>
+                        </div>
+                    </div>                
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="rt" class="form-control-label">RT</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="rt" id="rt" class="form-control">
+                            </select>
+                        </div>
+                    </div>      
+                    <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="alamat" class="form-control-label">Alamat</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <textarea name="alamat" id="alamat" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>          
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="kewarganegaraan" class="form-control-label">Kewarganegaraan</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="kewarganegaraan" id="kewarganegaraan" class="form-control">
                                 <option value="0" selected disabled>Pilih salah satu</option>
                                 <option value="WNI">WNI</option>
                                 <option value="WNA">WNA</option>
@@ -165,11 +188,25 @@
                         </div>
                     </div>
                     <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="status_keluarga" class="form-control-label">Status Keluarga</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="status_keluarga" id="status_keluarga" class="form-control">
+                                    <option value="0" selected disabled>Pilih salah satu</option>
+                                    <option value="Kepala Keluarga">Kepala Keluarga</option>
+                                    <option value="Istri">Istri</option>
+                                    <option value="Anak">Anak</option>
+                                    <option value="Cucu">Cucu</option>
+                                </select>
+                            </div>
+                        </div>
+                    <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="select" class="form-control-label">Status Kawin</label>
+                            <label for="status_kawin" class="form-control-label">Status Kawin</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="status_kawin" id="select" class="form-control">
+                            <select name="status_kawin" id="status_kawin" class="form-control">
                                 <option value="0" selected disabled>Pilih salah satu</option>
                                 <option value="Belum Kawin">Belum Kawin</option>
                                 <option value="Sudah Kawin">Sudah Kawin</option>
@@ -178,10 +215,10 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="select" class="form-control-label">Pendidikan</label>
+                            <label for="pendidikan" class="form-control-label">Pendidikan</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="pendidikan" id="select" class="form-control">
+                            <select name="pendidikan" id="pendidikan" class="form-control">
                                 <option value="0" selected disabled>Pilih salah satu</option>
                                 <option value="Tidak Mengenyam">Tidak Mengenyam</option>
                                 <option value="TK">TK</option>
@@ -198,10 +235,10 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="select" class="form-control-label">Pekerjaan</label>
+                            <label for="pekerjaan" class="form-control-label">Pekerjaan</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="select" id="select" class="form-control">
+                            <select name="select" id="pekerjaan" class="form-control">
                                 <option value="0" selected disabled>Pilih salah satu</option>
                                 <option value="Belum/Tidak Bekerja">Belum/Tidak Bekerja</option>
                                 <option value="Mengurus Rumah Tangga">Mengurus Rumah Tangga</option>
@@ -308,7 +345,7 @@
 @section('script')
 <script src="{{ asset('assets/js/jquery.datetimepicker.full.min.js') }}"></script>
 <script>
-    var urlcarirt = "{{ url('carirt') }}";
+    // var urlcarirt = "{{ url('carirt') }}";
     jQuery.datetimepicker.setLocale('id');
     jQuery('#datetimepicker').datetimepicker({
         i18n:{
@@ -328,7 +365,7 @@
         format:'d.m.Y'
     });
 </script>
-<script>
+{{-- <script>
     jQuery('#select5').on('change', function (e) {
         var rt = e.target.value;
         
@@ -346,6 +383,87 @@
 
         request.done(function (output) {
             jQuery('#namaRt').val(output);
+        });
+    });
+</script> --}}
+<script>
+    var urlcarikota = "{{ url('carikota') }}";
+    jQuery('#provinsi').on('change', function (e) {
+        var kota = e.target.value;
+        var request = jQuery.ajax({
+            url: urlcarikota + "/" + kota,
+            beforeSend: function (xhr) {
+                var token = jQuery('meta[name="csrf_token"]').attr('content');
+                if (token) {
+                    return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+                }
+            },
+            type: "GET",
+            dataType: "html"
+        });
+        
+        html = "";
+        request.done(function (output) {
+            data = JSON.parse(output);
+            for(var i=0; i<data.length; i++) {
+                var item = data[i];
+                html += "<option value=" + item.id + ">" + item.name + "</option>"
+            }
+            document.getElementById("kota").innerHTML = html;
+        });
+    });
+</script>
+<script>
+    var urlcarikecamatan = "{{ url('carikecamatan') }}";
+    jQuery('#kota').on('change', function (e) {
+        var kecamatan = e.target.value;
+        var request = jQuery.ajax({
+            url: urlcarikecamatan + "/" + kecamatan,
+            beforeSend: function (xhr) {
+                var token = jQuery('meta[name="csrf_token"]').attr('content');
+                if (token) {
+                    return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+                }
+            },
+            type: "GET",
+            dataType: "html"
+        });
+        
+        html = "";
+        request.done(function (output) {
+            data = JSON.parse(output);
+            for(var i=0; i<data.length; i++) {
+                var item = data[i];
+                html += "<option value=" + item.id + ">" + item.name + "</option>"
+            }
+            document.getElementById("kecamatan").innerHTML = html;
+        });
+    });
+</script>
+<script>
+    var urlcarikelurahan = "{{ url('carikelurahan') }}";
+    jQuery('#kecamatan').on('change', function (e) {
+        var kelurahan = e.target.value;
+        var request = jQuery.ajax({
+            url: urlcarikelurahan + "/" + kelurahan,
+            beforeSend: function (xhr) {
+                var token = jQuery('meta[name="csrf_token"]').attr('content');
+                if (token) {
+                    return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+                }
+            },
+            type: "GET",
+            dataType: "html"
+        });
+        
+        html = "";
+        request.done(function (output) {
+            data = JSON.parse(output);
+            for(var i=0; i<data.length; i++) {
+                var item = data[i];
+                html += "<option value=" + item.id + ">" + item.name + "</option>"
+            }
+            document.getElementById("kelurahan").innerHTML = html;
         });
     });
 </script>

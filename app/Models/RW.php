@@ -12,4 +12,24 @@ class RW extends Model
         'no_rw', 'nama_rw', 'id_kelurahan'
     ];
     public $timestamps = false;
+
+    /**
+     * RW belongs to Village.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function village()
+    {
+        return $this->belongsTo(Village::class, 'id');
+    }
+
+    /**
+     * RW has many RT.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rt()
+    {
+        return $this->hasMany(RT::class);
+    }
 }

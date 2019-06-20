@@ -17,4 +17,9 @@ class Penduduk extends Model
     {
         return $this->belongsTo(RT::class);
     }
+
+    public function provinsi()
+    {
+        return $this->belongsTo(Province::class);
+    }
 }
