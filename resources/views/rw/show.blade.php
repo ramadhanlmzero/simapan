@@ -31,22 +31,19 @@
                             </tr>
                             <tr>
                                 <th scope="row">Kelurahan</th>
-                                <td>: {{$kelurahan}} </td>
+                                <td>: {{$kelurahan->name}} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Kecamatan</th>
-                                <td></td>
-                                {{-- <td>: {{$kecamatan->name}}</td> --}}
+                                <td>: {{$kelurahan->district->name}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Kabupaten/Kota</th>
-                                <td></td>
-                                {{-- <td>: {{$kota->name}} </td> --}}
+                                <td>: {{$kelurahan->district->regency->name}} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Provinsi</th>
-                                <td></td>
-                                {{-- <td>: {{$provinsi->province()->name}} </td> --}}
+                                <td>: {{$kelurahan->district->regency->province->name}} </td>
                             </tr>
                         </tbody>
                     </table>

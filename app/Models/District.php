@@ -24,6 +24,7 @@ class District extends Model
      * @var string
      */
     protected $table = 'indoregion_districts';
+    public $incrementing = false;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -41,7 +42,7 @@ class District extends Model
      */
     public function regency()
     {
-        return $this->belongsTo(Regency::class);
+        return $this->belongsTo(Regency::class)->with('province');
     }
 
     /**

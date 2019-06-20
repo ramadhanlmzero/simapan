@@ -7,58 +7,39 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong>Form Input Perangkat RT</strong>
+                <strong>Form Edit @yield('title')</strong>
             </div>
             <div class="card-body card-block">
-                <form action="{{ route('rt.update', $rt->no_rt) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                    @method('put') 
+                <form action="{{ route('rt.update', $rt->id_rt) }}" method="post" enctype="multipart/form-data" class="form-horizontal"> 
+                    @method('put')
                     {{ csrf_field() }}
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input1" class=" form-control-label">Nomor RT</label>
+                            <label for="no_rt" class=" form-control-label">Nomor RT</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" disabled id="text-input1" name="no_rt" value="{{ $rt->no_rt }}" placeholder="Maksimal 2 angka" class="form-control" maxlength="2">
+                        <input type="number" id="no_rt" name="no_rt" value="{{ $rt->no_rt }}" placeholder="Maksimal 2 angka" class="form-control" maxlength="2">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input2" class=" form-control-label">Nama Ketua RT</label>
+                            <label for="nama_rt" class=" form-control-label">Nama Ketua RT</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="text-input2" name="nama_rt" value="{{ $rt->nama_rt }}" class="form-control">
+                            <input type="text" id="nama_rt" name="nama_rt" value="{{ $rt->nama_rt }}" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="text-input3" class=" form-control-label">Nomor RW</label>
+                            <label for="id_rw" class="form-control-label">Nomor RW</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="text-input3" name="no_rw" value="{{ $rt->no_rw }}" placeholder="Maksimal 2 angka" class="form-control" maxlength="2">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input4" class=" form-control-label">Kelurahan</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="text-input4" name="kelurahan" value="{{ $rt->kelurahan }}" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input5" class=" form-control-label">Kecamatan</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="text-input5" name="kecamatan" value="{{ $rt->kecamatan }}" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input6" class=" form-control-label">Kabupaten/Kota</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="text-input6" name="kota" value="{{ $rt->kota }}" class="form-control">
+                            <select name="id_rw" id="id_rw" class="form-control">
+                                <option value="{{ $rw->id_rw }}" selected>{{ $rw->no_rw }}</option>
+                                @foreach ($rwother as $value)
+                                    <option value="{{ $value->id_rw }}">{{ $value->no_rw }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="menudata">

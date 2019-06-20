@@ -96,7 +96,7 @@
             dataType: "html"
         });
         
-        html = "";
+        html = "<option value='" + 0 + "'selected disabled>Pilih Salah Satu</option>";
         request.done(function (output) {
             data = JSON.parse(output);
             for(var i=0; i<data.length; i++) {
@@ -123,7 +123,7 @@
             dataType: "html"
         });
         
-        html = "";
+        html = "<option value='" + 0 + "'selected disabled>Pilih Salah Satu</option>";
         request.done(function (output) {
             data = JSON.parse(output);
             for(var i=0; i<data.length; i++) {
@@ -150,7 +150,7 @@
             dataType: "html"
         });
         
-        html = "";
+        html = "<option value='' selected disabled>Pilih Salah Satu</option>";
         request.done(function (output) {
             data = JSON.parse(output);
             for(var i=0; i<data.length; i++) {

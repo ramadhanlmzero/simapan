@@ -15,7 +15,7 @@ class CreateRwTable extends Migration
     {
         Schema::create('rw', function (Blueprint $table) {
             $table->increments('id_rw');
-            $table->char('no_rw', 2);
+            $table->string('no_rw', 2);
             $table->string('nama_rw');
             $table->unsignedInteger('id_kelurahan');
             $table->foreign('id_kelurahan')->references('id_kelurahan')->on('kelurahan')->onDelete('cascade');

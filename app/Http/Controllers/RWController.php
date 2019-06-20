@@ -91,6 +91,7 @@ class RWController extends Controller
             'nama_rw' => $request->nama_rw,
             'id_kelurahan' => $request->kelurahan
         ];
+        
         RW::create($data);
 
         Alert::success('Data berhasil disimpan!', 'Sukses');
@@ -106,16 +107,10 @@ class RWController extends Controller
     public function show($id)
     {
         $rw = RW::find($id);
-        $kelurahan = Village::where('id', $rw->id_kelurahan)->first();
-        // $kecamatan = $kelurahan->district()->where('id',$id)->get();
-        // $kota = $kecamatan->regency()->where('id',$id)->get();
-        // $provinsi = $kota->province()->where('id',$id)->get();
+        $kelurahan = Village::where('id', $rw->id_kelurahan)->with('district')->first();
         $data = [
             'rw' => $rw,
             'kelurahan' => $kelurahan,
-            // 'kecamatan' => $kecamatan,
-            // 'kota' => $kota,
-            // 'provinsi' => $provinsi,
         ];
 
         return view('rw.show', $data);
@@ -130,8 +125,12 @@ class RWController extends Controller
     public function edit($id)
     {
         $rw = RW::find($id);
+        $kelurahan = Village::where('id', $rw->id_kelurahan)->with('district')->first();
+        $provinsi = Province::whereNotIn('id', $kelurahan->district->regency->province)->get();
         $data = [
             'rw' => $rw,
+            'kelurahan' => $kelurahan,
+            'provinsi' => $provinsi,
         ];
 
         return view('rw.edit', $data);
@@ -147,7 +146,11 @@ class RWController extends Controller
     public function update(Request $request, $id)
     {
         $rw = RW::find($id);
-        $data = $request->except('_token');
+        $data = [
+            'no_rw' => $request->no_rw,
+            'nama_rw' => $request->nama_rw,
+            'id_kelurahan' => $request->kelurahan
+        ];
         $rw->update($data);
 
         Alert::success('Data berhasil diubah!', 'Sukses');

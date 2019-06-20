@@ -8,6 +8,8 @@ use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
 use App\Models\Village;
+use App\Models\RW;
+use App\Models\RT;
 use Alert;
 
 class PendudukController extends Controller
@@ -77,6 +79,30 @@ class PendudukController extends Controller
         return 'tidak ditemukan';
     }
 
+    public function cariRW($id)
+    {
+        $kelurahan = Village::find($id);
+        $rw = $kelurahan->rw()->where('id_kelurahan',$id)->get();
+
+        if ($rw) {
+            return $rw;
+        }
+
+        return 'tidak ditemukan';
+    }
+
+    public function cariRT($id)
+    {
+        $rw = RW::find($id);
+        $rt = $rw->rt()->where('id_rw',$id)->get();
+
+        if ($rt) {
+            return $rt;
+        }
+
+        return 'tidak ditemukan';
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -91,7 +117,7 @@ class PendudukController extends Controller
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
-            'no_rt' => $request->no_rt,
+            'no_rt' => $request->rt,
             'agama' => $request->agama,
             'tgl_lahir' => $request->tgl_lahir,
             'tempat_lahir' => $request->tempat_lahir,
@@ -116,8 +142,10 @@ class PendudukController extends Controller
     public function show($id)
     {
         $penduduk = Penduduk::find($id);
+        $rt = RT::where('id_rt', $penduduk->no_rt)->with('rw')->first();
         $data = [
             'penduduk' => $penduduk,
+            'rt' => $rt,
         ];
 
         return view('penduduk.show', $data);

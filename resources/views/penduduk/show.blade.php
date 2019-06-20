@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('package/dist/sweetalert2.min.css') }}">
 @endsection
 
-@section('title', 'Surat')
+@section('title', 'Penduduk')
 
 @section('content')
 <div class="tambah">
@@ -18,16 +18,84 @@
                 <div class="card-body">
                     <table class="table">
                         <div class="nama">
-                            <h3><center>{{$surat->jenis_surat}}</center></h3>
+                            <h3><center>{{$penduduk->nama}}</center></h3>
                         </div>
                         <tbody>
                             <tr>
-                                <th scope="row" width="400px">ID Surat</th>
-                                <td>: {{$surat->id_surat}} </td>
+                                <th scope="row">NIK/Nomor KTP</th>
+                                <td>: {{ $penduduk->nik }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Jenis Surat</th>
-                                <td>: {{$surat->jenis_surat}} </td>
+                                <th scope="row">Nomor KK</th>
+                                <td>: {{ $penduduk->no_kk }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nama Penduduk</th>
+                                <td>: {{ $penduduk->nama }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Jenis Kelamin</th>
+                                <td>: {{ $penduduk->jenis_kelamin }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Agama</th>
+                                <td>: {{ $penduduk->agama }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tanggal Lahir</th>
+                                <td>: {{ $penduduk->tgl_lahir }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tempat Kelahiran</th>
+                                <td>: {{ $penduduk->tempat_lahir }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Status Keluarga</th>
+                                <td>: {{ $penduduk->status_keluarga }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Alamat</th>
+                                <td>: {{ $penduduk->alamat }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nomor RT</th>
+                                <td>: {{ $rt->no_rt }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nomor RW</th>
+                                <td>: {{ $rt->rw->no_rw }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kelurahan</th>
+                                <td>: {{ $rt->rw->village->name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kecamatan</th>
+                                <td>: {{ $rt->rw->village->district->name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kota/Kabupaten</th>
+                                <td>: {{ $rt->rw->village->district->regency->name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Provinsi</th>
+                                <td>: {{ $rt->rw->village->district->regency->province->name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kewarganegaraan</th>
+                                <td>: Antek Aseng Bangsad</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Status Kawin</th>
+                                <td>: {{ $penduduk->status_kawin }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pendidikan</th>
+                                <td>: {{ $penduduk->pendidikan }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pekerjaan</th>
+                                <td>: {{ $penduduk->pekerjaan }}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -20,7 +20,7 @@ class RW extends Model
      */
     public function village()
     {
-        return $this->belongsTo(Village::class, 'id');
+        return $this->belongsTo(Village::class, 'id_kelurahan', 'id')->with('district');
     }
 
     /**
@@ -30,6 +30,6 @@ class RW extends Model
      */
     public function rt()
     {
-        return $this->hasMany(RT::class);
+        return $this->hasMany(RT::class, 'id_rw', 'id_rw');
     }
 }

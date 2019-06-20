@@ -15,7 +15,7 @@ class CreateRtTable extends Migration
     {
         Schema::create('rt', function (Blueprint $table) {
             $table->increments('id_rt');
-            $table->char('no_rt', 2);
+            $table->string('no_rt', 2);
             $table->string('nama_rt');
             $table->unsignedInteger('id_rw');
             $table->foreign('id_rw')->references('id_rw')->on('rw')->onDelete('cascade');

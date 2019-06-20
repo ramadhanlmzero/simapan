@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RT;
 use App\Models\RW;
+use App\Models\RT;
 use Alert;
 
 class RTController extends Controller
@@ -63,8 +63,10 @@ class RTController extends Controller
     public function show($id)
     {
         $rt = RT::find($id);
+        $rw = RW::where('id_rw', $rt->id_rw)->with('village')->first();
         $data = [
             'rt' => $rt,
+            'rw' => $rw,
         ];
 
         return view('rt.show', $data);
@@ -79,8 +81,12 @@ class RTController extends Controller
     public function edit($id)
     {
         $rt = RT::find($id);
+        $rw = RW::where('id_rw', $rt->id_rw)->first();
+        $rwother = RW::where('id_rw', '!=', $rw->id_rw)->get();
         $data = [
             'rt' => $rt,
+            'rw' => $rw,
+            'rwother' => $rwother,
         ];
 
         return view('rt.edit', $data);

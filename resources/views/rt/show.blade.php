@@ -31,19 +31,27 @@
                             </tr>
                             <tr>
                                 <th scope="row">Nomor RW</th>
-                                <td>: {{$rt->no_rw}} </td>
+                                <td>: {{$rw->no_rw}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nama RW</th>
+                                <td>: {{$rw->nama_rw}} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Kelurahan</th>
-                                <td>: {{$rt->kelurahan}} </td>
+                                <td>: {{$rw->village->name}} </td>
                             </tr>
                             <tr>
                                 <th scope="row">Kecamatan</th>
-                                <td>: {{$rt->kecamatan}} </td>
+                                <td>: {{$rw->village->district->name}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Kabupaten/Kota</th>
-                                <td>: {{$rt->kota}} </td>
+                                <td>: {{$rw->village->district->regency->name}} </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Provinsi</th>
+                                <td>: {{$rw->village->district->regency->province->name}} </td>
                             </tr>
                         </tbody>
                     </table>

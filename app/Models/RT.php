@@ -20,7 +20,7 @@ class RT extends Model
      */
     public function rw()
     {
-        return $this->belongsTo(RW::class);
+        return $this->belongsTo(RW::class, 'id_rw', 'id_rw')->with('village');
     }
 
     /**

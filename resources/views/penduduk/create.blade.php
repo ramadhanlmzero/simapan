@@ -79,7 +79,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row form-group">
+                    {{-- <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="datetimepicker" class="form-control-label">
                                 Tanggal Lahir
@@ -89,6 +89,26 @@
                             <div class="form-group">
                                 <div class="input-group date">
                                     <input type='text' class="form-control" id="datetimepicker" name="tgl_lahir" />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                                <small class="form-text text-muted">
+                                    Tidak dapat diinput secara manual. Klik kotak untuk memunculkan menu tanggal
+                                </small>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="datetimepicker" class="form-control-label">
+                                Tanggal Lahir
+                            </label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <div class="form-group">
+                                <div class="input-group date">
+                                    <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control">
                                     <span class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </span>
@@ -238,7 +258,7 @@
                             <label for="pekerjaan" class="form-control-label">Pekerjaan</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="select" id="pekerjaan" class="form-control">
+                            <select name="pekerjaan" id="pekerjaan" class="form-control">
                                 <option value="0" selected disabled>Pilih salah satu</option>
                                 <option value="Belum/Tidak Bekerja">Belum/Tidak Bekerja</option>
                                 <option value="Mengurus Rumah Tangga">Mengurus Rumah Tangga</option>
@@ -345,7 +365,6 @@
 @section('script')
 <script src="{{ asset('assets/js/jquery.datetimepicker.full.min.js') }}"></script>
 <script>
-    // var urlcarirt = "{{ url('carirt') }}";
     jQuery.datetimepicker.setLocale('id');
     jQuery('#datetimepicker').datetimepicker({
         i18n:{
@@ -362,30 +381,9 @@
             }
         },
         timepicker:false,
-        format:'d.m.Y'
+        format:'d-m-Y'
     });
 </script>
-{{-- <script>
-    jQuery('#select5').on('change', function (e) {
-        var rt = e.target.value;
-        
-        var request = jQuery.ajax({
-            url: urlcarirt + "/" + rt,
-            beforeSend: function (xhr) {
-                var token = jQuery('meta[name="csrf_token"]').attr('content');
-                if (token) {
-                    return xhr.setRequestHeader('X-CSRF-TOKEN', token);
-                }
-            },
-            type: "GET",
-            dataType: "html"
-        });
-
-        request.done(function (output) {
-            jQuery('#namaRt').val(output);
-        });
-    });
-</script> --}}
 <script>
     var urlcarikota = "{{ url('carikota') }}";
     jQuery('#provinsi').on('change', function (e) {
@@ -402,7 +400,7 @@
             dataType: "html"
         });
         
-        html = "";
+        html = "<option value='" + 0 + "'selected disabled>Pilih Salah Satu</option>";
         request.done(function (output) {
             data = JSON.parse(output);
             for(var i=0; i<data.length; i++) {
@@ -429,7 +427,7 @@
             dataType: "html"
         });
         
-        html = "";
+        html = "<option value='" + 0 + "'selected disabled>Pilih Salah Satu</option>";
         request.done(function (output) {
             data = JSON.parse(output);
             for(var i=0; i<data.length; i++) {
@@ -456,7 +454,7 @@
             dataType: "html"
         });
         
-        html = "";
+        html = "<option value='" + 0 + "'selected disabled>Pilih Salah Satu</option>";
         request.done(function (output) {
             data = JSON.parse(output);
             for(var i=0; i<data.length; i++) {
@@ -464,6 +462,60 @@
                 html += "<option value=" + item.id + ">" + item.name + "</option>"
             }
             document.getElementById("kelurahan").innerHTML = html;
+        });
+    });
+</script>
+<script>
+    var urlcarirw = "{{ url('carirw') }}";
+    jQuery('#kelurahan').on('change', function (e) {
+        var rw = e.target.value;
+        var request = jQuery.ajax({
+            url: urlcarirw + "/" + rw,
+            beforeSend: function (xhr) {
+                var token = jQuery('meta[name="csrf_token"]').attr('content');
+                if (token) {
+                    return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+                }
+            },
+            type: "GET",
+            dataType: "html"
+        });
+        
+        html = "<option value='" + 0 + "'selected disabled>Pilih Salah Satu</option>";
+        request.done(function (output) {
+            data = JSON.parse(output);
+            for(var i=0; i<data.length; i++) {
+                var item = data[i];
+                html += "<option value=" + item.id_rw + ">" + item.no_rw + "</option>"
+            }
+            document.getElementById("rw").innerHTML = html;
+        });
+    });
+</script>
+<script>
+    var urlcarirt = "{{ url('carirt') }}";
+    jQuery('#rw').on('change', function (e) {
+        var rt = e.target.value;
+        var request = jQuery.ajax({
+            url: urlcarirt + "/" + rt,
+            beforeSend: function (xhr) {
+                var token = jQuery('meta[name="csrf_token"]').attr('content');
+                if (token) {
+                    return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+                }
+            },
+            type: "GET",
+            dataType: "html"
+        });
+        
+        html = "<option value='" + 0 + "'selected disabled>Pilih Salah Satu</option>";
+        request.done(function (output) {
+            data = JSON.parse(output);
+            for(var i=0; i<data.length; i++) {
+                var item = data[i];
+                html += "<option value=" + item.id_rt + ">" + item.no_rt + "</option>"
+            }
+            document.getElementById("rt").innerHTML = html;
         });
     });
 </script>

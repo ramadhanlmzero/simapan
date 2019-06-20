@@ -14,9 +14,9 @@ class CreatePendudukTable extends Migration
     public function up()
     {
         Schema::create('penduduk', function (Blueprint $table) {
-            $table->char('nik', 16)->primary();
-            $table->char('no_kk', 16);
-            $table->char('no_rt', 2);
+            $table->string('nik', 16)->primary();
+            $table->string('no_kk', 16);
+            $table->string('no_rt', 2);
             $table->string('nama');
             $table->string('jenis_kelamin');
             $table->text('alamat');

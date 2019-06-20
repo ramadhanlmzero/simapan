@@ -33,9 +33,9 @@
                             <td>{{ $value->no_rt }}</td>
                             <td>{{ $value->nama_rt }}</td>
                             <td>
-                                <a href="{{ route('rt.show', $value->no_rt) }}" class="btn btn-primary btn-sm">Rincian</a>
-                                <a href="{{ route('rt.edit', $value->no_rt) }}" class="btn btn-success btn-sm">Ubah</a>
-                                <form action="{{ route('rt.destroy', $value->no_rt) }}" method="POST" id="{{$value->no_rt}}" style="display:inline-block">
+                                <a href="{{ route('rt.show', $value->id_rt) }}" class="btn btn-primary btn-sm">Rincian</a>
+                                <a href="{{ route('rt.edit', $value->id_rt) }}" class="btn btn-success btn-sm">Ubah</a>
+                                <form action="{{ route('rt.destroy', $value->id_rt) }}" method="POST" id="{{$value->id_rt}}" style="display:inline-block">
                                     @method('DELETE')
                                     {{ csrf_field() }}
                                     <button type="submit" onClick="return confirm('Ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus</button>

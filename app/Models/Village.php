@@ -23,6 +23,7 @@ class Village extends Model
      * @var string
      */
     protected $table = 'indoregion_villages';
+    public $incrementing = false;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -40,7 +41,7 @@ class Village extends Model
      */
     public function district()
     {
-        return $this->belongsTo(District::class);
+        return $this->belongsTo(District::class, 'district_id', 'id')->with('regency');
     }
 
     /**
@@ -48,8 +49,8 @@ class Village extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function RW()
+    public function rw()
     {
-        return $this->hasMany(RW::class);
+        return $this->hasMany(RW::class, 'id_kelurahan', 'id');
     }
 }
